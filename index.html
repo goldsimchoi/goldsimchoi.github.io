@@ -6,7 +6,7 @@
  <script>
 async function readFlag() {
   try {
-    const res = await fetch('http://127.0.0.1:8001/mcp/flag', { cache: 'no-store' });
+    const res = await fetch('http://127.0.0.1:8001/flag', { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const text = (await res.text()).trim();
 
